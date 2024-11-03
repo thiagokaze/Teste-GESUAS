@@ -1,0 +1,32 @@
+{% extends "Layout.html" %}
+{% block content %}
+<div class="row justify-content-md-center">
+    <div class="col align-self-center">
+        <h3>Criação de NIS</h3>
+    </div>
+</div>
+<div class="row justify-content-md-center ">
+    <form method="post">
+        <div class="col align-self-center">
+            <div class="form-group">
+                <label for="cadastro">
+                    <input class="form-control" name="cadastro" type="text" maxlength="200" placeholder="Nome" autocomplete="off">
+                    <small id="emailHelp" class="form-text text-muted">Digite o nome do Beneficiário abaixo para criar um número NIS</small>
+                </label>
+            </div>
+        </div>
+        <div class="col align-self-center">
+        <button type="submit" class="btn btn-success">Cadastrar</button>
+        </div>
+    </form>
+</div>
+
+<div class="row justify-content-md-center">
+{% if error %}
+<div class="alert alert-danger">{{ error }}</div>
+{% elseif success %}
+<div class="alert alert-success">{{ success }}</div>
+{%endif%}
+</div>
+    
+{% endblock %}

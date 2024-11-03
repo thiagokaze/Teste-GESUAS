@@ -1,0 +1,1 @@
+CREATE TABLE `nteste`.`cadastros` (`id` INT(10) NULL AUTO_INCREMENT , `nome` VARCHAR(254) NOT NULL , `nis` INT(11) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
