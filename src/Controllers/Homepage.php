@@ -39,27 +39,33 @@ class Homepage
 
                 $nomeCadastro = trim($request->get('cadastro'));
 
-               $dbConnect = new DatabaseConnection();
+                if(!empty($nomeCadastro)){
 
-               $result = $dbConnect->sqlVerifyUsers($nomeCadastro);
+                    $dbConnect = new DatabaseConnection();
 
-               var_dump($result);
+                    $result = $dbConnect->sqlVerifyUsers($nomeCadastro);
 
-               if(!empty($result['nome'])){
-                    if($nomeCadastro == isset($result['nome'])){
-                        $data['error'] = $nomeCadastro.' já cadastrado - NIS '. $result['nis'];
-                    }
+                    if(!empty($result['nome'])){
+                            if($nomeCadastro == isset($result['nome'])){
+                                $data['error'] = $nomeCadastro.' já cadastrado - NIS '. $result['nis'];
+                            }
 
-               }else{
-                    $novoNIS = mt_rand(1111111111, 9999999999);
-                    $insert = $dbConnect->sqlRegister($nomeCadastro, $novoNIS);
-                    if($insert){
-                        $data['success'] = "Cadstro Realizado com Sucesso. NIS número".$novoNIS;
                     }else{
-                        $data['error'] = 'Ocorreu um erro tente mais tarde.';
-                    }
-                   
-                }            
+                            $novoNIS = mt_rand(1111111111, 9999999999);
+                            $insert = $dbConnect->sqlRegister($nomeCadastro, $novoNIS);
+                            if($insert){
+                                $data['success'] = "Cadstro Realizado com Sucesso. NIS número".$novoNIS;
+                            }else{
+                                $data['error'] = 'Ocorreu um erro tente mais tarde.';
+                            }
+                        
+                        }            
+
+                }else{
+                    $data['error'] = 'O Nome não pode ser vazio.';
+                }
+
+               
 
                 $html = $this->renderer->render('Homepage', $data);
                 $this->response->setContent($html);

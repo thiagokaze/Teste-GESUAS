@@ -14,6 +14,15 @@ composer install
 
 A Aplicação necessita da tabelas cadastros que se encontra no arquivo db.sql, que se encontra na raiz do projeto.
 
+## Rodando o projeto
+
+Utilize a pasta public para rodar o projeto
+
+```bash
+php -S localhost:8000
+```
+
+
 ## Autor
 
 Thiago Pereira
